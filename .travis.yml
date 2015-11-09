@@ -1,0 +1,9 @@
+language: go
+
+go:
+  - 1.5
+  - tip
+
+install:
+  - go get github.com/garyburd/redigo/redis
+  - go get github.com/rafaeljusto/redigomock
