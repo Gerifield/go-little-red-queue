@@ -95,6 +95,6 @@ func (q *Queue) PutLow(key string, value interface{}) (int64, error) {
 	return q.put(key, PRIORITY_LOW, value)
 }
 
-func (q Queue) getQueueKey(key, priority string) string {
+func (q *Queue) getQueueKey(key, priority string) string {
 	return fmt.Sprintf("%s:%s:%s", q.Prefix, priority, key)
 }
