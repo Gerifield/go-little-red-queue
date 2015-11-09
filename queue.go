@@ -18,6 +18,7 @@ type Queue struct {
 	Prefix string
 }
 
+//Create a new queue
 func NewQueue(conn redis.Conn) *Queue {
 	return &Queue{
 		Redis:  conn,
@@ -25,6 +26,7 @@ func NewQueue(conn redis.Conn) *Queue {
 	}
 }
 
+//Create a queue with a specific prefix
 func NewQueueWithPrefix(conn redis.Conn, prefix string) *Queue {
 	return &Queue{
 		Redis:  conn,
@@ -52,6 +54,7 @@ func (q *Queue) Get(key string, timeout int64) (interface{}, error) {
 	return nil, err
 }
 
+//Get bytes from queue
 func (q *Queue) GetBytes(key string, timeout int64) ([]byte, error) {
 	r, err := q.Get(key, timeout)
 
