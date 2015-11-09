@@ -7,3 +7,5 @@ go:
 install:
   - go get github.com/garyburd/redigo/redis
   - go get github.com/rafaeljusto/redigomock
+
+script: go test -v .
