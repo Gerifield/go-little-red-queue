@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/Gerifield/go-little-red-queue"
-	"github.com/garyburd/redigo/redis"
+	littleredqueue "github.com/gerifield/go-little-red-queue"
+	"github.com/gomodule/redigo/redis"
 )
 
 func main() {
@@ -17,19 +17,14 @@ func main() {
 
 	queue := littleredqueue.NewQueue(conn)
 
-	fmt.Println("Start consume")
-	for {
-		res, err := queue.GetString("testKey", 5)
-		if err != nil {
-			panic(err)
+	fmt.Println("Start publish")
+	for i := 0; i < 1000; i++ {
+		if i%2 == 0 {
+			queue.PutNormal("testKey", "NORM")
+		} else {
+			queue.PutHigh("testKey", "HI")
 		}
 
-		if res == "" {
-			fmt.Println("Timeout!")
-			break
-		} else {
-			fmt.Println("Res:", res)
-		}
 	}
 
 	fmt.Println("Finished")
