@@ -11,15 +11,15 @@ These use different queues, the get method'll choose a value from them.
 Via go get
 
 ``` bash
-$ go get github.com/Gerifield/go-little-red-queue
+$ go get github.com/gerifield/go-little-red-queue
 ```
 ## Example
 
 ``` go
 package main
 import (
-	"github.com/Gerifield/go-little-red-queue"
-	"github.com/garyburd/redigo/redis"
+	littleredqueue "github.com/gerifield/go-little-red-queue"
+	"github.com/gomodule/redigo/redis"
 )
 
 queue := littleredqueue.NewQueue(redis.Dial("tcp", "host:port"))
