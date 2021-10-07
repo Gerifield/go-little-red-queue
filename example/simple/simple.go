@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/Gerifield/go-little-red-queue"
-	"github.com/garyburd/redigo/redis"
+	littleredqueue "github.com/gerifield/go-little-red-queue"
+	"github.com/gomodule/redigo/redis"
 )
 
 func main() {
