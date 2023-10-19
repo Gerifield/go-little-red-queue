@@ -22,7 +22,7 @@ import (
 	"github.com/gomodule/redigo/redis"
 )
 
-queue := littleredqueue.NewQueue(redis.Dial("tcp", "host:port"))
+queue := littleredqueue.NewQueue[string](redis.Dial("tcp", "host:port"))
 
 //Put an element into the queue with normal priority
 l, _ := queue.PutNormal("key", "value")
@@ -33,7 +33,7 @@ l, err := queue.PutHigh("key", "value")
 fmt.Printf("QueueLength: %d\n", l)
 
 //Get a value with 5 seconds timeout, 0 means infite blocking
-res, err := queue.GetString("test2", 5)
+res, err := queue.Get("test2", 5)
 if err != nil {
 	panic(err)
 }
