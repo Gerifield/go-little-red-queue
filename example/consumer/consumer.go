@@ -15,11 +15,11 @@ func main() {
 	}
 	defer conn.Close()
 
-	queue := littleredqueue.NewQueue(conn)
+	queue := littleredqueue.NewQueue[string](conn)
 
 	fmt.Println("Start consume")
 	for {
-		res, err := queue.GetString("testKey", 5)
+		res, err := queue.Get("testKey", 5)
 		if err != nil {
 			panic(err)
 		}
