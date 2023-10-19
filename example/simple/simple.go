@@ -15,7 +15,7 @@ func main() {
 	}
 	defer conn.Close()
 
-	queue := littleredqueue.NewQueue(conn)
+	queue := littleredqueue.NewQueue[string](conn)
 
 	resb, err := queue.Get("test", 1)
 	fmt.Println("Res", resb, "Err", err)
@@ -23,13 +23,7 @@ func main() {
 	res, err := queue.PutNormal("test2", "almafa")
 	fmt.Println("Res", res, "Err", err)
 
-	res, err = queue.PutNormal("test2", 5)
+	queue2 := littleredqueue.NewQueue[int](conn)
+	res, err = queue2.PutNormal("test2", 5)
 	fmt.Println("Res", res, "Err", err)
-
-	resb, err = queue.GetString("test2", 1)
-	fmt.Println("Res", resb, "Err", err)
-	resb, err = queue.GetString("test2", 1)
-	fmt.Println("Res", resb, "Err", err)
-	resb, err = queue.GetString("test2", 1)
-	fmt.Println("Res", resb, "Err", err)
 }

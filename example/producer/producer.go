@@ -15,14 +15,14 @@ func main() {
 	}
 	defer conn.Close()
 
-	queue := littleredqueue.NewQueue(conn)
+	queue := littleredqueue.NewQueue[string](conn)
 
 	fmt.Println("Start publish")
 	for i := 0; i < 1000; i++ {
 		if i%2 == 0 {
-			queue.PutNormal("testKey", "NORM")
+			_, _ = queue.PutNormal("testKey", "NORM")
 		} else {
-			queue.PutHigh("testKey", "HI")
+			_, _ = queue.PutHigh("testKey", "HI")
 		}
 
 	}
